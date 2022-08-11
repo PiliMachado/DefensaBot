@@ -29,14 +29,15 @@ namespace ConsoleApplication
                                 new PlaceBoatsAddHandler(
                                     new GameExitHandler(
                                         new GameAttackHandler(
-                                            new GameBoardsHandler(
-                                                new GameChatHandler(
-                                                    new TutorialHandler(
-                                                        new HelpHandler(
-                                                            new FriendsHandler(
-                                                                new MatchHandler(
-                                                                    new RegisterHandler(
-                                                                        new StatsHandler()))))))))))))));
+                                            new GameShotHandler(
+                                                new GameBoardsHandler(
+                                                    new GameChatHandler(
+                                                        new TutorialHandler(
+                                                            new HelpHandler(
+                                                                new FriendsHandler(
+                                                                    new MatchHandler(
+                                                                        new RegisterHandler(
+                                                                            new StatsHandler())))))))))))))));
 
             IBot bot = BattleShipSettings.Instance.UsedBot;
             bot.SetHandlers(corInRightOrder);

@@ -1087,6 +1087,23 @@
         <member name="M:Library.Handlers.GameExitHandler.InternalHandle(Library.BotUtils.Message)">
             <inheritdoc />
         </member>
+        <member name="T:Library.Handlers.GameShotHandler">
+            <summary>
+            Maneja el comando /disparos o /shot para permitir ver los disparos en una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.GameShotHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="!:GameDisparosHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.GameShotHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.GameShotHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
         <member name="T:Library.Handlers.HelpHandler">
             <summary>
             Handler que maneja la request del comando /ayuda, muestra listas de comandos disponibles.
