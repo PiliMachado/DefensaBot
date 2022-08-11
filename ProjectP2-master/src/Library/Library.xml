@@ -1,0 +1,1666 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:Library.BattleShipSettings">
+            <summary>
+            Clase que contiene datos importantes sobre como se llevan a cabo las partidas de la batalla naval.
+            </summary>
+        </member>
+        <member name="F:Library.BattleShipSettings._instance">
+            <summary>
+            La única instancia de la clase <see cref="T:Library.BattleShipSettings"/>.
+            </summary>
+        </member>
+        <member name="P:Library.BattleShipSettings.Instance">
+            <summary>
+            Obtiene la única instancia de la clase <see cref="T:Library.BattleShipSettings"/>.
+            </summary>
+        </member>
+        <member name="P:Library.BattleShipSettings.TurnTimerPeriod">
+            <summary>
+            Obtiene el tiempo que tiene cada jugador para realizar un movimiento.
+            Valor en milisegundos.
+            </summary>
+        </member>
+        <member name="P:Library.BattleShipSettings.UsedBot">
+            <summary>
+            Obtiene o establece el bot que se utilizará durante la ejecución del programa.
+            </summary>
+        </member>
+        <member name="T:Library.BoardUtils.Board">
+            <summary>
+            Clase destinada a contener los botes, su conocimiento parte del conocimiento de
+            cada bote incluído en ella.
+            </summary>
+        </member>
+        <member name="P:Library.BoardUtils.Board.Boats">
+            <summary>
+            Obtiene la lista de botes contenidos en esta tabla.
+            </summary>
+        </member>
+        <member name="P:Library.BoardUtils.Board.Size">
+            <summary>
+            Obtiene el tamaño final de la tabla.
+            </summary>
+        </member>
+        <member name="P:Library.BoardUtils.Board.FailedHits">
+            <summary>
+            Obtiene la lista que contiene las coordenadas donde el jugador tiró y no acertó.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.Board.#ctor(System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoardUtils.Board"/> con el tamaño dado.
+            </summary>
+            <param name="size">El tamaño final de la board.</param>
+        </member>
+        <member name="M:Library.BoardUtils.Board.AddBoat(System.String,System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Añade el bote a la lista de botes.
+            Responsabilidad asignada por Expert, ya que Board es experta en los conocimientos sobre los botes
+            que se encuentran en ella.
+            Además aquí se aplica polimorfismo ya que el método RemoveBoat es polimórfico.
+            </summary>
+            <param name="boatType">El tipo de bote a añadir.</param>
+            <param name="coords">Las coordenadas que ocupa el bote a añadir.</param>
+            <returns>El nuevo bote.</returns>
+        </member>
+        <member name="M:Library.BoardUtils.Board.RemoveBoat(Library.BoatUtils.Boat)">
+            <summary>
+            Remueve el bote dado de la lista de botes contenidos en esta board.
+            Responsabilidad asignada por Expert, ya que Board es experta en los conocimientos sobre los botes
+            que se encuentran en ella.
+            Ademas aquí se aplica polimorfismo ya que el método RemoveBoat es polimórfico.
+            </summary>
+            <param name="boat">El bote a remover.</param>
+        </member>
+        <member name="M:Library.BoardUtils.Board.Hit(System.String,System.Int32)">
+            <summary>
+            Lanza un disparo sobre la coordenada dada, afectando a cualquier barco que se encuentre en ella.
+            Responsabilidad asignada por Expert, ya que Board es experta en los conocimientos sobre sus posiciones
+            y si se encuentra un barco en ellas o no.
+            </summary>
+            <param name="x">El carácter del alfabeto que represente a la coordenada X (Horizontal).</param>
+            <param name="y">La coordenada Y (Vertical).</param>
+            <exception cref="T:Library.Exceptions.InvalidAttackException">Lanzada si el carácter pasada por argumento no se encuentra en el
+            alfabeto.</exception>
+            <returns>El efecto que tuvo el disparo sobre la tabla (<see cref="T:Library.BoardUtils.BoardHitStatus"/>).</returns>
+        </member>
+        <member name="M:Library.BoardUtils.Board.Hit(System.Int32,System.Int32)">
+            <summary>
+            Lanza un disparo sobre la coordenada dada, afectando a cualquier barco que se encuentre en ella.
+            Responsabilidad asignada por Expert, ya que Board es experta en los conocimientos sobre sus posiciones
+            y si se encuentra un barco en ellas o no.
+            </summary>
+            <param name="x">La coordenada X (Horizontal).</param>
+            <param name="y">La coordenada Y (Vertical).</param>
+            <returns>El efecto que tuvo el disparo sobre la tabla (<see cref="T:Library.BoardUtils.BoardHitStatus"/>).</returns>
+        </member>
+        <member name="M:Library.BoardUtils.Board.GetPrintableBoard(System.Boolean)">
+            <summary>
+            Construye una string que representa a la tabla, lista para imprimirse o enviarse en un mensaje, para
+            darle esta responsabilidad tuvimos en cuenta el patrón Expert, Board conoce todas las posiciones en la board
+            y sus estados por ello es experta en la información necesaria para ejecutar la responsabilidad.
+            </summary>
+            <param name="isOwner">Declara si el jugador al que pertenece esta Board es el dueño de la misma
+            o lo es su rival.</param>
+            <returns>Esta tabla, representada como una string.</returns>
+        </member>
+        <member name="M:Library.BoardUtils.Board.GetBoatAt(System.Int32,System.Int32)">
+            <summary>
+            Obtiene el bote en las coordenadas dadas, si existe uno en las mismas.
+            </summary>
+            <param name="x">La coordenada X donde se busca el barco.</param>
+            <param name="y">La coordenada Y donde se busca el barco.</param>
+            <returns>Una instancia de <see cref="T:Library.BoatUtils.Boat"/>, si existe un bote en las
+            coordenadas dadas, null de otra manera.</returns>
+        </member>
+        <member name="T:Library.BoardUtils.BoardHitStatus">
+            <summary>
+            Representa el resultado de un ataque.
+            </summary>
+        </member>
+        <member name="F:Library.BoardUtils.BoardHitStatus.OutOfBoard">
+            <summary>
+            Las coordinadas dadas se ubican fuera de la tabla.
+            </summary>
+        </member>
+        <member name="F:Library.BoardUtils.BoardHitStatus.Water">
+            <summary>
+            No existe ningún bote en las coordenadas dadas.
+            </summary>
+        </member>
+        <member name="F:Library.BoardUtils.BoardHitStatus.WaterAgain">
+            <summary>
+            El jugador había atacado esas coordinadas con anterioridad.
+            </summary>
+        </member>
+        <member name="F:Library.BoardUtils.BoardHitStatus.BoatHit">
+            <summary>
+            El ataque resultó en satisfactorio, una parte de un bote ha resultado atacada.
+            </summary>
+        </member>
+        <member name="F:Library.BoardUtils.BoardHitStatus.BoatHitAgain">
+            <summary>
+            En las coordenadas dadas existe un bote pero ya había sido atacado con anterioridad.
+            </summary>
+        </member>
+        <member name="T:Library.BoardUtils.LargeBoard">
+            <summary>
+            Representa una tabla de un tamaño fijo de 15x15.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.LargeBoard.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoardUtils.LargeBoard"/>.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.LargeBoard.BoardTypeName">
+            <summary>
+            Obtiene el nombre de la tabla.
+            </summary>
+            <returns>El nombre de este tipo de tabla.</returns>
+        </member>
+        <member name="T:Library.BoardUtils.MediumBoard">
+            <summary>
+            Representa una tabla de un tamaño fijo de 10x10.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.MediumBoard.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoardUtils.MediumBoard"/>.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.MediumBoard.BoardTypeName">
+            <summary>
+            Obtiene el nombre de la tabla.
+            </summary>
+            <returns>El nombre de este tipo de tabla.</returns>
+        </member>
+        <member name="T:Library.BoardUtils.SmallBoard">
+            <summary>
+            Representa una tabla de un tamaño fijo de 5x5.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.SmallBoard.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoardUtils.SmallBoard"/>.
+            </summary>
+        </member>
+        <member name="M:Library.BoardUtils.SmallBoard.BoardTypeName">
+            <summary>
+            Obtiene el nombre de la tabla.
+            </summary>
+            <returns>El nombre de este tipo de tabla.</returns>
+        </member>
+        <member name="T:Library.BoatUtils.AircraftCarrier">
+            <summary>
+            Representa un <see cref="T:Library.BoatUtils.Boat"/> de tipo AircraftCarrier.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.AircraftCarrier.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.AircraftCarrier"/>.
+            </summary>
+            <param name="positions">Las posiciones que abarca el bote.</param>
+        </member>
+        <member name="M:Library.BoatUtils.AircraftCarrier.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.Boat">
+            <summary>
+            Clase que representa a cada uno de los botes dentro de una <see cref="T:Library.BoardUtils.Board"/>.
+            Cada bote contiene más de una coordenada.
+            </summary>
+        </member>
+        <member name="P:Library.BoatUtils.Boat.Positions">
+            <summary>
+            Obtiene la lista que contiene todas las posiciones de este bote.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.Boat.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}},System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.Boat"/>.
+            </summary>
+            <param name="positions">Las posiciones que ocupa el nuevo bote.</param>
+            <param name="size">El tamaño del bote a crear.</param>
+            <exception cref="T:Library.Exceptions.IrregularBoatSizeException">Arrojada cuando el numero de posiciones pasadas por
+            parámetro es distinto del número de posiciones que este Boat debe tener.</exception>
+            <exception cref="T:System.ArgumentNullException">Arrojada en caso de que la lista de posiciones sea nula.</exception>
+        </member>
+        <member name="M:Library.BoatUtils.Boat.IsDestroyed">
+            <summary>
+            Verifica el estado de "salud" del bote.
+            Responsabilidad asignada por Expert, ya que el bote conoce sus posiciones y el estado de ellas.
+            </summary>
+            <returns>True si todas las posiciones del barco fueron destruidas.</returns>
+        </member>
+        <member name="M:Library.BoatUtils.Boat.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.BoatPosition">
+            <summary>
+            Representa cada una de las posiciones de un barco.
+            </summary>
+        </member>
+        <member name="P:Library.BoatUtils.BoatPosition.X">
+            <summary>
+            Obtiene la posición X en la tabla.
+            </summary>
+        </member>
+        <member name="P:Library.BoatUtils.BoatPosition.Y">
+            <summary>
+            Obtiene la posición Y en la tabla.
+            </summary>
+        </member>
+        <member name="P:Library.BoatUtils.BoatPosition.WasHit">
+            <summary>
+            Obtiene o establece un valor que indica si el estado de "salud" de esta posición.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.BoatPosition.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.BoatPosition"/>.
+            </summary>
+            <param name="x">Posición X en la tabla.</param>
+            <param name="y">Posición Y en la tabla.</param>
+        </member>
+        <member name="M:Library.BoatUtils.BoatPosition.Equals(System.Int32,System.Int32)">
+            <summary>
+            Compara esta <see cref="T:Library.BoatUtils.BoatPosition"/> con las coordenadas x e y dadas.
+            Método con sobrecarga.
+            </summary>
+            <param name="x">La coordenada X a comparar.</param>
+            <param name="y">La coordenada Y a comparar.</param>
+            <returns><code>true</code> si las coordenadas dadas coinciden con las de esta instancia.</returns>
+        </member>
+        <member name="M:Library.BoatUtils.BoatPosition.Equals(System.Object)">
+            Método con sobrecarga.
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BoatUtils.BoatPosition.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BoatUtils.BoatPosition.Equals(Library.BoatUtils.BoatPosition)">
+            Método con sobrecarga.
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.Cruise">
+            <summary>
+            Representa un <see cref="T:Library.BoatUtils.Boat"/> de tipo Cruise.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.Cruise.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.Cruise"/>.
+            </summary>
+            <param name="positions">Las posiciones que abarca el bote.</param>
+        </member>
+        <member name="M:Library.BoatUtils.Cruise.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.SailBoat">
+            <summary>
+            Representa un <see cref="T:Library.BoatUtils.Boat"/> de tipo SailBoat.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.SailBoat.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.SailBoat"/>.
+            </summary>
+            <param name="positions">Las posiciones que abarca el bote.</param>
+        </member>
+        <member name="M:Library.BoatUtils.SailBoat.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.Submarine">
+            <summary>
+            Representa un <see cref="T:Library.BoatUtils.Boat"/> de tipo Submarino.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.Submarine.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.Submarine"/>.
+            </summary>
+            <param name="positions">Las posiciones que abarca el bote.</param>
+        </member>
+        <member name="M:Library.BoatUtils.Submarine.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BoatUtils.Vessel">
+            <summary>
+            Representa un <see cref="T:Library.BoatUtils.Boat"/> de tipo Vessel.
+            </summary>
+        </member>
+        <member name="M:Library.BoatUtils.Vessel.#ctor(System.Collections.Generic.ICollection{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BoatUtils.Vessel"/>.
+            </summary>
+            <param name="positions">Las posiciones que abarca el bote.</param>
+        </member>
+        <member name="M:Library.BoatUtils.Vessel.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.BotUtils.IBot">
+            <summary>
+            Interfaz contenedora de los atributos básicos necesarios para un bot.
+            </summary>
+        </member>
+        <member name="M:Library.BotUtils.IBot.SetHandlers(Library.Handlers.AbstractHandler)">
+            <summary>
+            Establece la cadena de responsabilidad que manejará las requests que envíen los usuarios.
+            </summary>
+            <param name="cor">La cadena de handlers que manejará las requests enviadas al bot.</param>
+        </member>
+        <member name="M:Library.BotUtils.IBot.Send(System.Int64,System.String)">
+            <summary>
+            Envía un mensaje de texto a un usuario.
+            </summary>
+            <param name="id">El id del usuario que debe recibir el mensaje.</param>
+            <param name="message">El mensaje a enviar.</param>
+        </member>
+        <member name="M:Library.BotUtils.IBot.SendImage(Library.BotUtils.Message,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BotUtils.IBot.SendGif(Library.BotUtils.Message)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BotUtils.IBot.OnMessage(System.Int64,System.String)">
+            <summary>
+            Maneja el recibimiento de un nuevo mensaje.
+            </summary>
+            <param name="id">El id del usuario que envía el mensaje.</param>
+            <param name="message">El mensaje recibido.</param>
+        </member>
+        <member name="M:Library.BotUtils.IBot.StartReceiving">
+            <summary>
+            Empieza a escuchar nuevos mensajes.
+            </summary>
+        </member>
+        <member name="T:Library.BotUtils.Message">
+            <summary>
+            Representa un mensaje recibido por un bot.
+            </summary>
+        </member>
+        <member name="P:Library.BotUtils.Message.ID">
+            <summary>
+            Obtiene el id del usuario que envía el mensaje.
+            </summary>
+        </member>
+        <member name="P:Library.BotUtils.Message.Text">
+            <summary>
+            Obtiene el texto que contiene el mensaje.
+            </summary>
+        </member>
+        <member name="M:Library.BotUtils.Message.#ctor(System.Int64,System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BotUtils.Message"/>.
+            </summary>
+            <param name="id">El id del usuario que envía el mensaje.</param>
+            <param name="text">El texto contenido en el mensaje.</param>
+        </member>
+        <member name="T:Library.BotUtils.TelegramBot">
+            <summary>
+            Representa un bot cuya interfaz de comunicación es telegram.
+            </summary>
+        </member>
+        <member name="P:Library.BotUtils.TelegramBot.Cor">
+            <summary>
+            Obtiene o establece la cadena de handlers que utiliza este bot.
+            </summary>
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.BotUtils.TelegramBot"/>.
+            </summary>
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.SetHandlers(Library.Handlers.AbstractHandler)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.Send(System.Int64,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.SendImage(Library.BotUtils.Message,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.SendGif(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.OnMessage(System.Int64,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.StartReceiving">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TelegramBot.HandleUpdateAsync(Telegram.Bot.ITelegramBotClient,Telegram.Bot.Types.Update,System.Threading.CancellationToken)">
+            <summary>
+            Maneja una update por parte de un usuario al bot.
+            </summary>
+            <param name="botClient">El cliente del bot que envía la actualización.</param>
+            <param name="update">La actualización en cuestión.</param>
+            <param name="cancellationToken">El cancellation token.</param>
+            <returns>Un resultado.</returns>
+        </member>
+        <member name="T:Library.BotUtils.TestBot">
+            <summary>
+            Representa un bot no funcional utilizado únicamente para realizar pruebas.
+            </summary>
+        </member>
+        <member name="P:Library.BotUtils.TestBot.LastMessage">
+            <summary>
+            El último mensaje enviado por este bot.
+            </summary>
+        </member>
+        <member name="P:Library.BotUtils.TestBot.Cor">
+            <summary>
+            Obtiene o establece la cadena de handlers que utiliza este bot.
+            </summary>
+        </member>
+        <member name="M:Library.BotUtils.TestBot.SetHandlers(Library.Handlers.AbstractHandler)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TestBot.Send(System.Int64,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TestBot.SendImage(Library.BotUtils.Message,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TestBot.SendGif(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TestBot.OnMessage(System.Int64,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.BotUtils.TestBot.StartReceiving">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.ContainerUtils.GameContainer">
+            <summary>
+            GameContainer contendrá todos los game, y se encargara por el patron Creator de crear instancias de Game.
+            </summary>
+        </member>
+        <member name="P:Library.ContainerUtils.GameContainer.AvailableGames">
+            <summary>
+            Obtiene la lista de juegos disponibles.
+            </summary>
+        </member>
+        <member name="M:Library.ContainerUtils.GameContainer.RemoveElement(System.String)">
+            <summary>
+            Remueve un juego de la lista de juegos.
+            Designada por Expert ya que GameContainer conoce la lista de games disponibles.
+            </summary>
+            <param name="identifier">El ID del juego a remover.</param>
+        </member>
+        <member name="M:Library.ContainerUtils.GameContainer.AddElement(System.Boolean,System.String)">
+            <summary>
+            Agrega un nuevo objeto de tipo Game a la lista de juegos.
+            Por Creator ya que GameContainer guarda instacias de Game creara los Games.
+            Designada por Expert ya que GameContainer conoce la lista de games disponibles.
+            </summary>
+            <param name="isPublic">Identifica si este juego es público o privado.</param>
+            <param name="boardTagType">El tipo de board a utilizar en el juego.</param>
+            <returns>El nuevo juego creado.</returns>
+            <exception cref="T:Library.Exceptions.GameAlreadyRegisteredException">Lanzada cuando al momento de registrar un nuevo juego,
+            ya existe uno registrado con el mismo identificador.</exception>
+        </member>
+        <member name="M:Library.ContainerUtils.GameContainer.IsRegistered(System.String)">
+            <summary>
+            Comrpueba si existe algún juego con el identificador pasado por parámetro.
+            Designada por Expert ya que GameContainer conoce la lista de games disponibles.
+            </summary>
+            <param name="identifier">El ID a buscar.</param>
+            <returns>True si existe un juego con el identificador dado.</returns>
+        </member>
+        <member name="M:Library.ContainerUtils.GameContainer.Search(System.String)">
+            <summary>
+            Obtiene un Game o juego con el identificador dado por parámetro.
+            Designada por Expert ya que GameContainer conoce la lista de games disponibles.
+            </summary>
+            <param name="identifier">El identificador del juego a buscar.</param>
+            <returns>El juego con el identificador pasado por parámetro, o null si no existe ninguno con ese ID.</returns>
+        </member>
+        <member name="T:Library.ContainerUtils.Singleton`1">
+            <summary>
+            Singleton es una clase estática cuya función es poder aplicar el patron Singleton.
+            Con esta clase podemos tener una única instancia de una clase para asi los valores
+            de ella no cambian de instancia en instancia.
+            </summary>
+            <typeparam name="T">El tipo de objeto para el cual se va a mantener una sola instancia.</typeparam>
+        </member>
+        <member name="F:Library.ContainerUtils.Singleton`1.instance">
+            <summary>
+            Variable estática privada instance, de tipo genérico T ya que depende del tipo del elemento en el cual se implemente la clase.
+            </summary>
+        </member>
+        <member name="P:Library.ContainerUtils.Singleton`1.Instance">
+            <summary>
+            Obtiene variable estática publica Instance, el valor de instance no cambiara y no podremos acceder a el directamente.
+            Solo podemos acceder a partir de este Instance.
+            </summary>
+        </member>
+        <member name="T:Library.ContainerUtils.UserContainer">
+            <summary>
+            UserContainer es una clase que contiene una lista de instancias de tipo User.
+            UserContainer contendrá todos los User, y se encargara por el patron Creator de crear instancias de User.
+            </summary>
+        </member>
+        <member name="F:Library.ContainerUtils.UserContainer.Elements">
+            <summary>
+            Lista de usuarios. Singleton por definición, no puede haber dos listas de todos los usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.ContainerUtils.UserContainer.RemoveElement(Library.UserUtils.User)">
+            <summary>
+            Remueve un usuario de la lista de usuarios.
+            </summary>
+            <param name="user">El usuario a remover de la lista.</param>
+        </member>
+        <member name="M:Library.ContainerUtils.UserContainer.AddElement(System.Int64,System.String,System.String)">
+            <summary>
+            Agrega un nuevo usuario a la lista de usuarios registrados.
+            Por Creator ya que UserContainer guarda instancias de User creara los Users.
+            Designada por Expert ya que UserContainer conoce los Users registrados.
+            </summary>
+            <param name="ID">El ID del nuevo usuario.</param>
+            <param name="name">El nombre del nuevo usuario.</param>
+            <param name="nickName">El nombre del nuevo usuario dentro del juego.</param>
+            <returns>El nuevo usuario.</returns>
+            <exception cref="T:Library.Exceptions.AlreadyRegisteredException">Lanzada cuando ya existe un jugador con la misma ID.</exception>
+        </member>
+        <member name="M:Library.ContainerUtils.UserContainer.IsRegistered(System.Int64)">
+            <summary>
+            IsRegistered es un método para verificar si un usuario ya esta en la lista de usuarios o no. Para corroborarlo
+            buscamos el ID del usuario entre los usuarios de la lista.
+            Designada por Expert ya que UserContainer conoce los Users registrados.
+            </summary>
+            <param name="ID">El ID a buscar.</param>
+            <returns><code>true</code> si existe un usuario registrado con el mismo ID. <code>false</code>
+            de otra manera.</returns>
+        </member>
+        <member name="M:Library.ContainerUtils.UserContainer.Search(System.Int64)">
+            <summary>
+            Search es un método para encontrar un usuario en la lista de usuarios, mediante un valor
+            ID del user que se busca, pasado por parámetro.
+            Designada por Expert ya que UserContainer conoce los Users registrados.
+            </summary>
+            <param name="ID">El ID de usuario a buscar.</param>
+            <returns>El usuario encontrado con el ID pasado por parámetro, o nulo.</returns>
+        </member>
+        <member name="T:Library.Exceptions.AlreadyInGameException">
+            <summary>
+            Excepción lanzada cuando al momento de registrar un nuevo usuario,
+            el mismo, o un usuario con el mismo ID, ya se encuentra registrado.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.AlreadyInGameException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.AlreadyInGameException"/>.
+            Crea una nueva excepción al momento de registrar un nuevo usuario.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.AlreadyRegisteredException">
+            <summary>
+            Excepción lanzada cuando al momento de registrar un nuevo usuario,
+            el mismo, o un usuario con el mismo ID, ya se encuentra registrado.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.AlreadyRegisteredException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.AlreadyRegisteredException"/>.
+            Crea una nueva excepción al momento de registrar un nuevo usuario.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.CannotBefriendYourselfException">
+            <summary>
+            Excepción lanzada cuando al momento de agregar un usuario a la lista de amigos,
+            este ID no pertenece a ningún usuario en la lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.CannotBefriendYourselfException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.CannotBefriendYourselfException"/>.
+            Crea una nueva excepción al momento de agregar un nuevo amigo.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.CannotRegisterException">
+            <summary>
+            Excepción lanzada cuando al momento de registrar un nuevo usuario, el mismo no provee los datos necesarios.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.CannotRegisterException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.CannotRegisterException"/>
+            al momento de registrar un nuevo usuario.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.GameAlreadyRegisteredException">
+            <summary>
+            Excepción lanzada cuando al momento de registrar un nuevo usuario, el mismo no provee los datos necesarios.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.GameAlreadyRegisteredException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.GameAlreadyRegisteredException"/>.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.GameJoinException">
+            <summary>
+            Excepción lanzada al momento que un jugador se une a una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.GameJoinException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.GameJoinException"/>.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.IncorrectAccessibilityTypeException">
+            <summary>
+            Excepción lanzada cuando el usuario ingresa un tipo de accesibilidad incorrecto al crear una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.IncorrectAccessibilityTypeException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.IncorrectAccessibilityTypeException"/>.
+            Crea una nueva excepción al momento de crear una partida con un argumento de accesibilidad incorrecto.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.InvalidAttackException">
+            <summary>
+            Excepción lanzada cuando al momento de atacar en una partida, no es momento de atacar.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.InvalidAttackException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.InvalidAttackException"/>.
+            Crea una nueva excepción al momento de atacar en una partida.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.InvalidBoatException">
+            <summary>
+            Extensión lanzada cuando al momento de agregar un bote, sus coordenadas son inválidas o no existe un bote
+            con el tipo dado.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.InvalidBoatException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.InvalidBoatException"/>.
+            </summary>
+            <param name="message">El mensaje que va a contener la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.InvalidIDException">
+            <summary>
+            Excepción lanzada cuando al momento de agregar un usuario a la lista de amigos,
+            el id enviado por el jugador es inválido.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.InvalidIDException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.InvalidIDException"/>.
+            Crea una nueva excepción al momento de agregar un nuevo amigo.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.IrregularBoatSizeException">
+            <summary>
+            Extensión lanzada cuando al momento de crear un nuevo bote, la cantidad de coordenadas pasadas al nuevo
+            bote no coinciden con el tamaño del bote.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.IrregularBoatSizeException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.IrregularBoatSizeException"/>.
+            </summary>
+            <param name="message">El mensaje que va a contener la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.NoMatchFoundException">
+            <summary>
+            Excepción lanzada cuando al momento de unirse a una partida, no existe una partida a la cual unirse.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.NoMatchFoundException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.NoMatchFoundException"/>.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.NotRegisteredYetException">
+            <summary>
+            Excepción lanzada cuando al momento de efectuar un comando para el cual se necesita estar registrado,
+            el usuario que envía el mensaje no está registrado.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.NotRegisteredYetException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.NotRegisteredYetException"/>
+            al momento de utilizar un comando para el cual se necesita estar registrado.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.Exceptions.NullPointerException">
+            <summary>
+            Excepción creada con la intención de reemplazar <see cref="T:System.ArgumentNullException"/>, y así poder agregar
+            un mensaje personalizado.
+            </summary>
+        </member>
+        <member name="M:Library.Exceptions.NullPointerException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Exceptions.NullPointerException"/>.
+            </summary>
+            <param name="message">El mensaje a enviar al usuario, detallando la causa de la excepción.</param>
+        </member>
+        <member name="T:Library.GameUtils.Game">
+            <summary>
+            Clase que representa cada juego iniciado en el programa.
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.IsPublic">
+            <summary>
+            Obtiene un valor que indica si este juego es público (cualquiera puede unirse)
+            o es privado (solo se puede unir con un código de juego).
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.GameStatus">
+            <summary>
+            Obtiene el estado de la partida.
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.Identifier">
+            <summary>
+            Obtiene el identificador único de este Game.
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.BoardType">
+            <summary>
+            Obtiene el tipo de board que se utilizará en este Game.
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.Players">
+            <summary>
+            Obtiene diccionario de cada <see cref="T:Library.UserUtils.User"/>
+            con su respectiva <see cref="T:Library.BoardUtils.Board"/>.
+            </summary>
+        </member>
+        <member name="P:Library.GameUtils.Game.Turn">
+            <summary>
+            Obtiene quien lleva el turno en la partida.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.#ctor(System.String,System.Boolean,System.Type)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.GameUtils.Game"/>.
+            </summary>
+            <param name="identifier">El identificador único de este Game.</param>
+            <param name="isPublic">Identifica si la nueva partida es pública o privada.</param>
+            <param name="boardType">El tipo de board a utilizar en este Game.</param>
+        </member>
+        <member name="M:Library.GameUtils.Game.Finalize">
+            <summary>
+            Finaliza una instancia de la clase <see cref="T:Library.GameUtils.Game"/>.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.AddPlayer(Library.UserUtils.User)">
+            <summary>
+            Agrega un usuario al diccionario de User, Board.
+            Designada por Expert, ya que conoce los users del juego.
+            </summary>
+            <param name="newPlayer">El jugador que se une.</param>
+            <exception cref="T:Library.Exceptions.NullPointerException">Excepción que surge en caso de que el jugador sea null.</exception>
+            <exception cref="T:Library.Exceptions.GameJoinException">Excepción que surge si el juego ya esta lleno.</exception>
+        </member>
+        <member name="M:Library.GameUtils.Game.RemovePlayer(Library.UserUtils.User)">
+            <summary>
+            Remueve el jugador del diccionario de User, Board.
+            Designada por Expert ya que conoce el diccionario de User, Board.
+            </summary>
+            <param name="user">El usuario que se borrara del diccionario.</param>
+        </member>
+        <member name="M:Library.GameUtils.Game.SwitchTurns">
+            <summary>
+            Cambia el jugador que debe hacer el próximo movimiento.
+            Designada por Expert ya que Game es quien conoce de que User es el turno.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.Win(Library.UserUtils.User)">
+            <summary>
+            Establece un ganador del juego y prepara el juego para terminar.
+            </summary>
+            <param name="winner">El jugador que ganó la partida.</param>
+        </member>
+        <member name="M:Library.GameUtils.Game.StartPlacingBoats">
+            <summary>
+            Inicia el juego, permitiendo a los jugadores colocar sus botes.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.StartGame">
+            <summary>
+            Inicia el juego, permitiendo a los jugadores atacar a sus oponentes.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.StarTimer">
+            <summary>
+            Empieza a correr el timer que contabiliza los segundos de cada turno.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.StopTimer">
+            <summary>
+            Finaliza el timer para que no siga corriendo en el fondo.
+            </summary>
+        </member>
+        <member name="M:Library.GameUtils.Game.OnTimerEnd(System.Object)">
+            <summary>
+            Método llamado automáticamente por el timer, cada vez que este termina un ciclo.
+            </summary>
+            <param name="state">El estado del timer al momento de llamar este método.</param>
+        </member>
+        <member name="T:Library.GameUtils.GameIdentifier">
+            <summary>
+            GameIdentifier es una clase cuya mayor responsabilidad es crear identificadores
+            para los games.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameIdentifier.Random">
+            <summary>
+            Random es una variable estática ya que no nos interesa crear nuevas instancias
+            de ella cada vez que generemos un identificador. Su función es dar la capacidad de generar
+            números random.
+            </summary>
+            <returns>Objeto Random.</returns>
+        </member>
+        <member name="F:Library.GameUtils.GameIdentifier.PossibleCharacters">
+            <summary>
+            PossibleCharacters es una lista de strings, que contiene todos los posibles characters
+            que pueda tener un identificador.
+            </summary>
+            <value>Lista de strings.</value>
+        </member>
+        <member name="F:Library.GameUtils.GameIdentifier.ExistingIdentifiers">
+            <summary>
+            ExistingIdentifiers es una lista de strings, que contiene todos los identificadores
+            que se han creado, asi evitamos que se repitan.
+            </summary>
+            <returns>Lista de strings.</returns>
+        </member>
+        <member name="M:Library.GameUtils.GameIdentifier.GenerateIdentifier">
+            <summary>
+            GenerateIdentifier es un método cuya función es generar un identificador
+            para un game.
+            Designado por Expert ya que conoce la lista de identificadores ya existentes.
+            </summary>
+            <returns>Un identificador único para un nuevo game.</returns>
+        </member>
+        <member name="T:Library.GameUtils.GameStatus">
+            <summary>
+            Enumerador utilizado para indicar el estado de un juego.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameStatus.Waiting">
+            <summary>
+            El juego no ha iniciado, se encuentra esperando jugadores.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameStatus.PlacingBoats">
+            <summary>
+            El juego ya tiene sus jugadores y los mismos están en etapa de colocar sus botes.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameStatus.Playing">
+            <summary>
+            El juego se encuentra en proceso.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameStatus.Finishing">
+            <summary>
+            Los jugadores ya no pueden realizar jugadas, el juego terminó.
+            </summary>
+        </member>
+        <member name="F:Library.GameUtils.GameStatus.Finished">
+            <summary>
+            El juego terminó y no hay mas jugadores dentro de él.
+            </summary>
+        </member>
+        <member name="T:Library.Handlers.AbstractHandler">
+            <summary>
+            Clase abstracta que implementa <see cref="T:Library.Handlers.IHandler"/>, heredada directamente por cada handler.
+            Los Handlers aplican OCP, ya que son abiertos a la extension, mediante herencia de esta clase y
+            agregación, se pueden agregar responsabilidades, es decir nuevos comandos. Ademas es cerrado
+            a la modificación ya que el codigo no precisa y no deberia cambiar.
+            Con los handlers aplicamos el patron chain of responsability, el cual indica una serie de clases
+            en la que cada una ve si puede manejar un mensaje y en caso de que no pueda delega la
+            responsabilidad al proximo Handler.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.AbstractHandler"/> y establece
+            el siguiente handler en la cadena de responsabilidad.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.Handle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.SetNext(Library.Handlers.IHandler)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.GetNext">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.InternalHandle(Library.BotUtils.Message)">
+            <summary>
+            Maneja una request, asumiendo que el mensaje cumple los requisitos para que este handler pueda manejar la misma.
+            </summary>
+            <param name="message">El mensaje o request.</param>
+            <returns>La respuesta a la request dada por parámetro.</returns>
+        </member>
+        <member name="M:Library.Handlers.AbstractHandler.CanHandle(Library.BotUtils.Message)">
+            <summary>
+            Comprueba si el handler actual puede manejar la petición.
+            </summary>
+            <param name="message">El mensaje recibido.</param>
+            <returns>True si este handler puede manejar el mensaje.</returns>
+        </member>
+        <member name="T:Library.Handlers.FriendsHandler">
+            <summary>
+            FriendsHandler es una clase que hereda de AbstractHandler, sus responsabilidades principales
+            son verificar si puede manejar el mensaje, y en caso de que si, darle opciones de manejo o
+            administración de la lista de amigos, y la información de estos.
+            FriendsHandler depende de abstracciones de User, IStatsHolder y IFriendsHolder, de esta forma aplicamos DIP. FriendsHandler solo precisa
+            de una información especifica del User, por lo cual podriamos depende de una abstracción de dicha clase
+            para asi si en un futuro cambia User, no cambiara FriendsHandler.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.FriendsHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios, y obtener al usuario que manda el mensaje.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.FriendsHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.FriendsHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.FriendsHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.FriendsHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.GameAttackHandler">
+            <summary>
+            Maneja las interacciones de jugadores dentro de una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.GameAttackHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.GameAttackHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.GameAttackHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.GameAttackHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.GameBoardsHandler">
+            <summary>
+            Maneja las interacciones de jugadores dentro de una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.GameBoardsHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.GameBoardsHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.GameBoardsHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.GameBoardsHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.GameChatHandler">
+            <summary>
+            Maneja las interacciones de jugadores dentro de una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.GameChatHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.GameChatHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.GameChatHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.GameChatHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.GameExitHandler">
+            <summary>
+            Maneja las interacciones de jugadores dentro de una partida.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.GameExitHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.GameExitHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.GameExitHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.GameExitHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.HelpHandler">
+            <summary>
+            Handler que maneja la request del comando /ayuda, muestra listas de comandos disponibles.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.HelpHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.HelpHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.HelpHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.HelpHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.IHandler">
+            <summary>
+            Representa las características básicas que debe tener un handler.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.IHandler.Handle(Library.BotUtils.Message)">
+            <summary>
+            Maneja una request, y devuelve una respuesta acorde a la request.
+            </summary>
+            <param name="message">El mensaje o request recibido.</param>
+            <returns>Una respuesta al mensaje.</returns>
+        </member>
+        <member name="M:Library.Handlers.IHandler.SetNext(Library.Handlers.IHandler)">
+            <summary>
+            Establece el siguiente handler, en caso de que el actual no sepa manejar la request recibida.
+            Este es un metodo polimorfico y por ello podemos decir que se aplica polimorfismo en los Handlers.
+            </summary>
+            <param name="handler">El siguiente handler.</param>
+            <returns>El handler recibido por parámetro, para encadenación de llamadas.</returns>
+        </member>
+        <member name="M:Library.Handlers.IHandler.GetNext">
+            <summary>
+            Obtiene el siguiente handler.
+            </summary>
+            <returns>El siguiente handler.</returns>
+        </member>
+        <member name="T:Library.Handlers.InfoHandler">
+            <summary>
+            Handler encargado de manejar la request de información por parte de un jugador.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.InfoHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.InfoHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.InfoHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.InfoHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.InfoHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.MatchHandler">
+            <summary>
+            Handler encargado de manejar las requests relacionadas a unirse y crear partidas.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.MatchHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.MatchHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.MatchHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.MatchHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.MatchHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.PlaceBoatsAddHandler">
+            <summary>
+            Handler encargado de manejar las requests relacionadas a unirse y crear partidas.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.PlaceBoatsAddHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsAddHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.PlaceBoatsAddHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsAddHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsAddHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.PlaceBoatsInfoHandler">
+            <summary>
+            Handler encargado de manejar las requests relacionadas a unirse y crear partidas.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.PlaceBoatsInfoHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsInfoHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.PlaceBoatsInfoHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsInfoHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsInfoHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.PlaceBoatsListHandler">
+            <summary>
+            Handler encargado de manejar las requests relacionadas a listar botes agregados por el usuario.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.PlaceBoatsListHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsListHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.PlaceBoatsListHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsListHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsListHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.PlaceBoatsRemoveHandler">
+            <summary>
+            Handler encargado de manejar las requests relacionadas a listar botes agregados por el usuario.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.PlaceBoatsRemoveHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsRemoveHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.PlaceBoatsRemoveHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsRemoveHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.PlaceBoatsRemoveHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.RegisterHandler">
+            <summary>
+            Maneja registros de nuevos Users.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.RegisterHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.RegisterHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.RegisterHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.RegisterHandler.InternalHandle(Library.BotUtils.Message)">
+            <exception cref="T:Library.Exceptions.CannotRegisterException">Arrojada cuando al momento de finalizar el registro,
+            el usuario no ha proveído los datos necesarios.</exception>
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.StatsHandler">
+            <summary>
+            StatsHandler es una clase que hereda de AbstractHandler, y cuyas responsabilidades principales
+            son ver si puede manejar un mensaje, y en caso de que esto sea positivo, probar devolver los
+            stats del usuario.
+            StatsHandler depende de una abstracción de User (IStatsHolder) por DIP, asi de esta forma StatsHandler
+            no cambiara sin en un futuro cambia User, y por ISP no conoce lo que otra abstracción IFriendsHolder
+            contiene, ya que no precisa de ello.
+            </summary>
+        </member>
+        <member name="F:Library.Handlers.StatsHandler.userContainer">
+            <summary>
+            Variable UserContainer para verificar que un usuario este agregado en la
+            lista de usuarios, y obtener al usuario que manda el mensaje.
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.StatsHandler.#ctor(Library.Handlers.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Handlers.StatsHandler"/>.
+            </summary>
+            <param name="next">El siguiente handler en la cadena de responsabilidad.</param>
+        </member>
+        <member name="M:Library.Handlers.StatsHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.StatsHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Handlers.TutorialHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Handlers.TutorialHandler.#ctor(Library.Handlers.IHandler)">
+            <inheritdoc />
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:Library.Handlers.TutorialHandler.CanHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.Handlers.TutorialHandler.InternalHandle(Library.BotUtils.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Managers.AbstractManager`2">
+            <summary>
+            Maneja tipos de clases y datos sensibles al momento de utilizar los mismos.
+            </summary>
+            <typeparam name="TManageable">El tipo de Manageable.</typeparam>
+            <typeparam name="TManaged">El tipo de clase a manejar.</typeparam>
+        </member>
+        <member name="F:Library.Managers.AbstractManager`2.AvailableTypes">
+            <summary>
+            Diccionario que contiene cada "tag" de los tipos manejados en este Manager.
+            </summary>
+        </member>
+        <member name="M:Library.Managers.AbstractManager`2.GetAvailableTags">
+            <summary>
+            Obtiene una lista de tipos o tamaños de tablas disponibles a la hora de crear una nueva partida.
+            Designada por Expert ya que GameContainer conoce la lista de boards disponibles.
+            </summary>
+            <returns>La lista de tamaños o tipos disponibles.</returns>
+        </member>
+        <member name="M:Library.Managers.AbstractManager`2.GetTagByType(System.Type)">
+            <summary>
+            Obtiene el tag de una board según su tipo.
+            </summary>
+            <param name="type">El type de la board previamente registrada.</param>
+            <returns>El tag del tipo de board.</returns>
+        </member>
+        <member name="M:Library.Managers.AbstractManager`2.GetTypeByTag(System.String)">
+            <summary>
+            Obtiene el tipo de board según su tag.
+            Designada por Expert ya que GameContainer conoce la lista de boards disponibles.
+            </summary>
+            <param name="tag">El tag de la board previamente registrada.</param>
+            <returns>El tipo de board.</returns>
+        </member>
+        <member name="M:Library.Managers.AbstractManager`2.GetManageableByTag(System.String)">
+            <summary>
+            Obtiene los botes que necesita contener una tabla.
+            </summary>
+            <param name="tag">El tag de la board previamente registrada.</param>
+            <returns>Los tipos de botes y sus respectivas cantidades.</returns>
+        </member>
+        <member name="M:Library.Managers.AbstractManager`2.AddAvailableType(System.String,`0)">
+            <summary>
+            Agrega un nuevo tipo de board y su correspondiente clase al diccionario de tipos de boards.
+            Designada por Expert ya que GameContainer conoce la lista de boards disponibles.
+            </summary>
+            <param name="tag">El tag o nombre por el que se le conoce a la al dato que queremos registrar.</param>
+            <param name="data">La data necesaria para el funcionamiento del tipo manejado.</param>
+        </member>
+        <member name="T:Library.Managers.BoardsManager">
+            <summary>
+            Maneja los tipos de boards disponibles y sus respectivos datos.
+            Agrega los tipos de boards que vienen por defecto en el programa.
+            </summary>
+        </member>
+        <member name="M:Library.Managers.BoardsManager.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Managers.BoardsManager"/>.
+            Agrega los tipos de botes que vienen por defecto en el programa.
+            </summary>
+        </member>
+        <member name="T:Library.Managers.BoatsManager">
+            <summary>
+            Maneja los tipos de botes disponibles y sus respectivos datos.
+            </summary>
+        </member>
+        <member name="M:Library.Managers.BoatsManager.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Managers.BoatsManager"/>.
+            Agrega los tipos de botes que vienen por defecto en el programa.
+            </summary>
+        </member>
+        <member name="T:Library.Managers.Manageables.BoardData">
+            <summary>
+            Guarda información sensible sobre un tipo de board.
+            </summary>
+        </member>
+        <member name="P:Library.Managers.Manageables.BoardData.NeededBoatsForBoard">
+            <summary>
+            Obtiene el diccionario de bote - cantidad necesarios para la tabla manejada.
+            </summary>
+        </member>
+        <member name="M:Library.Managers.Manageables.BoardData.#ctor(System.Type,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Managers.Manageables.BoardData"/> con los datos necesarios
+            para el tipo de board incluído en este Manageable.
+            </summary>
+            <param name="type">La clase de bote a la que pertenecen los datos incluídos en este Manageable.</param>
+            <param name="neededBoatsForBoard">Los tipos de botes que deben estar incluídos en la board manejada
+            y sus respectivas cantidades.</param>
+        </member>
+        <member name="T:Library.Managers.Manageables.BoatData">
+            <summary>
+            Guarda información sensible sobre un tipo de bote.
+            </summary>
+        </member>
+        <member name="P:Library.Managers.Manageables.BoatData.Size">
+            <summary>
+            Obtiene el tamaño necesario para este bote.
+            </summary>
+        </member>
+        <member name="M:Library.Managers.Manageables.BoatData.#ctor(System.Type,System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Managers.Manageables.BoatData"/> con los datos necesarios
+            para el tipo de bote incluído en este Manageable.
+            </summary>
+            <param name="type">La clase de bote a la que pertenecen los datos incluídos en este Manageable.</param>
+            <param name="size">El tamaño del bote.</param>
+        </member>
+        <member name="T:Library.Managers.Manageables.Manageable`1">
+            <summary>
+            Guarda información sensible sobre un tipo de objeto pasado por parámetro.
+            </summary>
+            <typeparam name="TManaged">El tipo de objeto del cual se guardará la información sensible.</typeparam>
+        </member>
+        <member name="M:Library.Managers.Manageables.Manageable`1.#ctor(System.Type)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.Managers.Manageables.Manageable`1"/>,
+            estableciendo el tipo de objeto incluído en este Manageable.
+            Este tipo debe ser una subclase de el tipo manejado TManaged.
+            </summary>
+            <param name="type">El tipo de objeto del cual se guardará información sensible.</param>
+            <exception cref="T:System.IO.InvalidDataException">Lanzada en caso de que el tipo pasado en este constructor
+            no sea una subclase de el tipo manejado.</exception>
+        </member>
+        <member name="P:Library.Managers.Manageables.Manageable`1.Type">
+            <summary>
+            Obtiene o establece el tipo a ser manejado.
+            </summary>
+        </member>
+        <member name="F:Library.SecretsManager._instance">
+            <summary>
+            La única instancia de la clase <see cref="T:Library.BattleShipSettings"/>.
+            </summary>
+        </member>
+        <member name="P:Library.SecretsManager.Instance">
+            <summary>
+            Obtiene la única instancia de la clase <see cref="T:Library.SecretsManager"/>.
+            </summary>
+        </member>
+        <member name="P:Library.SecretsManager.Secrets">
+            <summary>
+            Contiene los secretos y las keys para objetos sensibles como bots.
+            </summary>
+        </member>
+        <member name="T:Library.UserUtils.IFriendsHolder">
+            <summary>
+            IFriendsHolder es una interfaz que define un tipo que posee información y métodos referentes a amigos.
+            </summary>
+        </member>
+        <member name="M:Library.UserUtils.IFriendsHolder.RemoveFriend(Library.UserUtils.IStatsHolder)">
+            <summary>
+            Remueve un usuario de la lista de amigos de este usuario.
+            </summary>
+            <param name="user">El usuario a eliminar.</param>
+            <returns>true si el usuario fue eliminado de la lista de amigos,
+            false si el usuario dado no se encuentra en la lista de amigos de este usuario.</returns>
+        </member>
+        <member name="M:Library.UserUtils.IFriendsHolder.AddFriend(Library.UserUtils.IStatsHolder)">
+            <summary>
+            Agrega un usuario a la lista de amigos de este usuario.
+            </summary>
+            <param name="user">El usuario a agregar a la lista de amigos.</param>
+            <returns>true if the friend was successfully added, false otherwise.</returns>
+        </member>
+        <member name="P:Library.UserUtils.IFriendsHolder.Friends">
+            <summary>
+            Obtiene Lista de usuarios amigos de este usuario.
+            </summary>
+            <returns>La lista de amigos.</returns>
+        </member>
+        <member name="T:Library.UserUtils.IStatsHolder">
+            <summary>
+            IStatsHolder es una interfaz que define un tipo que posee atributos referentes a los stats.
+            </summary>
+        </member>
+        <member name="P:Library.UserUtils.IStatsHolder.ID">
+            <summary>
+            Obtiene la ID del usuario de Telegram.
+            </summary>
+            <value>La ID de este usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.IStatsHolder.FullName">
+            <summary>
+            Obtiene el nombre completo del usuario.
+            </summary>
+            <value>Nombre del usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.IStatsHolder.NickName">
+            <summary>
+            Obtiene o establece el nombre del usuario dentro del juego.
+            </summary>
+            <value>Nick del usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.IStatsHolder.Stats">
+            <summary>
+            Obtiene las estadísticas para este usuario.
+            </summary>
+            <value>Clase contenedora de las estadísticas para este usuario.</value>
+        </member>
+        <member name="T:Library.UserUtils.User">
+            <summary>
+            Clase que representa a un usuario registrado en el programa, vinculado a un ID de telegram.
+            Contiene información exclusiva de cada usuario, junto con sus estadísticas.
+            Implementa las interfaces IStatsHolder y IFriendsHolder para luego aplicar DIP y ISP en FriendsHandler
+            y StatsHandler.
+            </summary>
+        </member>
+        <member name="P:Library.UserUtils.User.ID">
+            <summary>
+            Obtiene la ID del usuario de Telegram.
+            </summary>
+            <value>La ID de este usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.User.FullName">
+            <summary>
+            Obtiene el nombre completo del usuario.
+            </summary>
+            <value>Nombre del usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.User.NickName">
+            <summary>
+            Obtiene o establece el nombre del usuario dentro del juego.
+            </summary>
+            <value>Nick del usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.User.Friends">
+            <summary>
+            Obtiene Lista de usuarios amigos de este usuario.
+            </summary>
+            <returns>La lista de amigos.</returns>
+        </member>
+        <member name="P:Library.UserUtils.User.Stats">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.UserUtils.User.UserStatus">
+            <summary>
+            Obtiene o establece el estado del jugador respecto a una partida.
+            </summary>
+        </member>
+        <member name="M:Library.UserUtils.User.#ctor(System.Int64,System.String,System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Library.UserUtils.User"/> con los datos recibidos.
+            </summary>
+            <param name="id">El ID (telegram) vinculado a este usuario.</param>
+            <param name="fullName">El nombre de este jugador.</param>
+            <param name="nickName">El nombre del jugador dentro del juego.</param>
+        </member>
+        <member name="M:Library.UserUtils.User.AddFriend(Library.UserUtils.IStatsHolder)">
+            <summary>
+            Agrega un usuario a la lista de amigos de este usuario.
+            </summary>
+            <param name="user">El usuario a agregar a la lista de amigos.</param>
+            <returns><code>true</code> if the friend was successfully added. <code>false</code> otherwise.</returns>
+        </member>
+        <member name="M:Library.UserUtils.User.RemoveFriend(Library.UserUtils.IStatsHolder)">
+            <summary>
+            Remueve un usuario de la lista de amigos de este usuario.
+            </summary>
+            <param name="user">El usuario a eliminar.</param>
+            <returns>true si el usuario fue eliminado de la lista de amigos,
+            false si el usuario dado no se encuentra en la lista de amigos de este usuario.</returns>
+        </member>
+        <member name="M:Library.UserUtils.User.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.UserUtils.User.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.UserUtils.UserStats">
+            <summary>
+            Clase que contiene las estadísticas de un usuario.
+            </summary>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.Wins">
+            <summary>
+            Obtiene o establece las partidas que este jugador ha ganado.
+            </summary>
+            <value>La cantidad de partidas que ha ganado el usuario.</value>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.Losses">
+            <summary>
+            Obtiene o establece las partidas que este jugador ha perdido.
+            </summary>
+            <value>La cantidad de partidas que el usuario ha perdido.</value>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.Ties">
+            <summary>
+            Obtiene o establece la cantidad de partidas que el usuario ha empatado.
+            </summary>
+            <value>La cantidad de partidas que el usuario ha empatado.</value>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.TotalHits">
+            <summary>
+            Obtiene o establece la cantidad de disparos que el jugador ha efectuado.
+            </summary>
+            <value>La cantidad total de disparos efectuados.</value>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.TotalMisses">
+            <summary>
+            Obtiene o establece la cantidad total de disparos que el jugador ha errado.
+            </summary>
+            <value>La cantidad total de disparos fallidos.</value>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.UserStatus">
+            <summary>
+            Obtiene o establece el estado del jugador respecto a una partida.
+            </summary>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.HitPercentage">
+            <summary>
+            Obtiene el porcentaje de disparos acertados, respecto al total de disparos efectuados.
+            </summary>
+            <returns>El porcentaje de disparos acertados.</returns>
+        </member>
+        <member name="P:Library.UserUtils.UserStats.MissPercentage">
+            <summary>
+            Obtiene el porcentaje de disparos fallidos, respecto al total de disparos efectuados.
+            </summary>
+            <returns>El porcentaje de disparos errados.</returns>
+        </member>
+        <member name="T:Library.UserUtils.UserStatus">
+            <summary>
+            Representa el estado de un usuario respecto a una partida.
+            </summary>
+        </member>
+        <member name="F:Library.UserUtils.UserStatus.Lobby">
+            <summary>
+            Estado de usuario que indica que el mismo está esperando fuera de una partida.
+            </summary>
+        </member>
+        <member name="F:Library.UserUtils.UserStatus.WaitingForSecondPlayer">
+            <summary>
+            Estado de usuario que indica que el mismo está dentro de una partida, esperando por un segundo usuario.
+            </summary>
+        </member>
+        <member name="F:Library.UserUtils.UserStatus.Playing">
+            <summary>
+            El usuario está jugando una partida.
+            </summary>
+        </member>
+    </members>
+</doc>

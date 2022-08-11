@@ -1,0 +1,959 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryTests</name>
+    </assembly>
+    <members>
+        <member name="T:LibraryTests.BoardManagerTests">
+            <summary>
+            Test de la clase BoardManager.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardManagerTests.GetAvailableTagsTest">
+            <summary>
+            Test del metodo GetAvailableTagsTest.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardManagerTests.GetTagByTypeTest">
+            <summary>
+            Test del metodo GetTagByTypeTest.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardManagerTests.GetManageableByTagTest">
+            <summary>
+            Test del metodo GetManageableByTag.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.BoardTests">
+            <summary>
+            Test de la clase Board.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.SmallBoardSize">
+            <summary>
+            Comprobando el tamaño del tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.MediumBoardSize">
+            <summary>
+            Comprobando el tamaño del tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.LargeBoardSize">
+            <summary>
+            Comprobar el tamaño del tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddAircraftCarrierToSmallBoard">
+            <summary>
+            Añadir AircraftCarrier a un tablero pequeño
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddCruiseToSmallBoard">
+            <summary>
+            Añadir Cruise a un tablero pequeño
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSubmarineToSmallBoard">
+            <summary>
+            Añadir Submarine a un tablero pequeño
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddVesselToSmallBoard">
+            <summary>
+            Añadir Vessel a un tablero pequeño
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSailboatToSmallBoard">
+            <summary>
+            Añadir Sailboat a un tablero pequeño
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddAircraftCarrierToMediumBoard">
+            <summary>
+            Añadir AircraftCarrier a un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddCruiseToMediumBoard">
+            <summary>
+            Añadir Cruise a un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSubmarineToMediumBoard">
+            <summary>
+            Añadir Submarine a un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddVesselToMediumBoard">
+            <summary>
+            Añadir Vessel a un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSailboatToMediumBoard">
+            <summary>
+            Añadir Sailboat a un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddAircraftCarrierToLargeBoard">
+            <summary>
+            Añadir AircraftCarrier a un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddCruiseToLargeBoard">
+            <summary>
+            Añadir Cruise a un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSubmarineToLargeBoard">
+            <summary>
+            Añadir Submarine a un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddVesselToLargeBoard">
+            <summary>
+            Añadir Vessel a un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.AddSailboatToLargeBoard">
+            <summary>
+            Añadir Sailboat a un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveAircraftCarrierToSmallBoard">
+            <summary>
+            Remover AircraftCarrier de un tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveCruiseToSmallBoard">
+            <summary>
+            Remover Cruise de un tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSubmarineToSmallBoard">
+            <summary>
+            Remover Submarine de un tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveVesselToSmallBoard">
+            <summary>
+            Remover Vessel de un tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSailboatToSmallBoard">
+            <summary>
+            Remover Sailboat de un tablero pequeño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveAircraftCarrierToMediumBoard">
+            <summary>
+            Remover AircraftCarrier de un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveCruiseToMediumBoard">
+            <summary>
+            Remover Cruise de un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSubmarineToMediumBoard">
+            <summary>
+            Remover Submarine de un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveVesselToMediumBoard">
+            <summary>
+            Remover Vessel de un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSailboatToMediumBoard">
+            <summary>
+            Remover Sailboat de un tablero mediano.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveAircraftCarrierToLargeBoard">
+            <summary>
+            Remover AircraftCarrier de un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveCruiseToLargeBoard">
+            <summary>
+            Remover Cruise de un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSubmarineToLargeBoard">
+            <summary>
+            Remover Submarine de un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveVesselToLargeBoard">
+            <summary>
+            Remover Vessel de un tablero grande.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoardTests.RemoveSailboatToLargeBoard">
+            <summary>
+            Remover Sailboat de un tablero grande.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.BoatPositionTests">
+            <summary>
+            Tests relacionados a BoatPosition.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatPositionTests.BoatPositionCreation">
+            <summary>
+            Test de creación de un BoatPosition y correcta asignación de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatPositionTests.BoatPositionEquals">
+            <summary>
+            Test de los metodos Equals de un BoatPosition.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.BoatsManagerTests">
+            <summary>
+            Test de la clase BoatManager.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatsManagerTests.GetAvailableTagsTest">
+            <summary>
+            Test del metodo GetAvailableTags.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatsManagerTests.GetTagByTypeTest">
+            <summary>
+            Test del metodo GetTagByType.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatsManagerTests.GetManageableByTagTest">
+            <summary>
+            Test del metodo GetManageableByTag.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.BoatTests">
+            <summary>
+            Tests relacionados a Boat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.VesselCreation">
+            <summary>
+            Test de creacion de un Boat y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.SubmarineCreation">
+            <summary>
+            Test de creacion de un Boat y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.SailBoatCreation">
+            <summary>
+            Test de creacion de un Boat y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.CruiseCreation">
+            <summary>
+            Test de creacion de un Boat y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.AirCraftCarrierCreation">
+            <summary>
+            Test de creacion de un Boat y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.VesselIsDestroyed">
+            <summary>
+            Test de destrucción de un Boat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.SubmarineIsDestroyed">
+            <summary>
+            Test de destrucción de un Boat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.SailBoatIsDestroyed">
+            <summary>
+            Test de destrucción de un Boat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.CruiseIsDestroyed">
+            <summary>
+            Test de destrucción de un Boat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.BoatTests.AirCraftCarrierIsDestroyed">
+            <summary>
+            Test de destrucción de un Boat.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.FriendsHandlerTests">
+            <summary>
+            Tests relacionados a FriendsHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.NotRegistered">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.FullyCorrectAddInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.FullyCorrectRemoveInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.FullyCorrectStatsInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.FullyCorrectListInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.IncorrectCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.IncorrectFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.AddAlreadyAddedInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.RemoveNotAddedFriendInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FriendsHandlerTests.StatsNotAddedUserInteraction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameAttackHandlerTests">
+            <summary>
+            Test de la clase Board.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameAttackHandlerTests.ItsNotYourTurnYet">
+            <summary>
+            Prueba que un usuario no puede atacar durante el turno del adversario
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameAttackHandlerTests.ShootWater">
+            <summary>
+            Prueba que el usuario atacante puede disparar en agua.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameBoardsHandlerTests">
+            <summary>
+            Tests relacionados a GameBoardsHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.Setup">
+            <summary>
+            Prepara los tests para correr.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintEmptyLargeBoard">
+            <summary>
+            Impresión de board para una board vacía.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintLargeBoardWithBoats">
+            <summary>
+            Impresión de board para una board con bote.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintEmptyMediumBoard">
+            <summary>
+            Impresión de board para una board vacía.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintMediumBoardWithBoats">
+            <summary>
+            Impresión de board para una board con bote.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintEmptySmallBoard">
+            <summary>
+            Impresión de board para una board vacía.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameBoardsHandlerTests.CorrectPrintSmallBoardWithBoats">
+            <summary>
+            Impresión de board para una board con bote.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameChatHandlerTests">
+            <summary>
+            Tests relacionados a GameChatHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameChatHandlerTests.MessagesAreSent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameContainerTests">
+            <summary>
+            Tests relacionados a GameContainer.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.AddElement">
+            <summary>
+            Test de añadir un game a la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.RemoveElement">
+            <summary>
+            Test de remover un game de la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.RemoveNotAddedElement">
+            <summary>
+            Test de remover un game, que no se encuentra en la lista, de la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.SearchRegisteredGame">
+            <summary>
+            Test de buscar un game ya agregado a la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.SearchUnRegisteredGame">
+            <summary>
+            Test de buscar un game no agregado a la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.IsRegisteredForRegisteredGame">
+            <summary>
+            Test de ver si esta registrado un game que esta añadido a la lista de games.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameContainerTests.IsRegisteredForUnRegisteredGame">
+            <summary>
+            Test de ver si esta registrado un game que no esta en la lista de games.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameExitHandlerTests">
+            <summary>
+            Tests relacionados a GameExitHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameExitHandlerTests.CorrectGameExit">
+            <summary>
+            Test de correcto uso del comando salir.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameIdentifierTests">
+            <summary>
+            Tests relacionados a GameIdentifier.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameIdentifierTests.GenerateIdentifier">
+            <summary>
+            Test de generar un identificador.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameIdentifierTests.GenerateCorrectLengthIdentifier">
+            <summary>
+            Test de generar un identificador con el largo esperado.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.GameTests">
+            <summary>
+            Tests relacionados a Game.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.GameCreation">
+            <summary>
+            Test de creacion de un Game y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.AddPlayer">
+            <summary>
+            Test de agregar un player.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.RemovePlayer">
+            <summary>
+            Test de remover un player.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.AddAlreadyAddedPlayer">
+            <summary>
+            Test de agregar un player ya agregado.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.RemoveAlreadyRemovedPlayer">
+            <summary>
+            Test de remover un player ya removido.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.SwitchTurns">
+            <summary>
+            Test de cambiar turnos.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTests.Win">
+            <summary>
+            Test de ganar partida.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.HelpHandlerTests">
+            <summary>
+            Tests relacionados a AyudaHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HelpHandlerTests.NotRegistratedStillHandles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HelpHandlerTests.RegistratedStillHandles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HelpHandlerTests.IncorrectCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HelpHandlerTests.IncorrectFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LibraryTests.InfoHandlerTests">
+            <summary>
+            Test del Handler de información.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.InfoHandlerTests.MyInfo">
+            <summary>
+            Prueba que el usuario puede contemplar su propia información.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.InfoHandlerTests.MatchInfo">
+            <summary>
+            Prueba que el usuario puede ver la información de la partida en que se encuentra.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.MatchHandlerTests">
+            <summary>
+            Clase encargada de probar los handlers de match.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.NotRegistered">
+            <summary>
+            Prueba que no puede entrar en un match un jugador no registrado.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.InsufficientArgumentsCreateMatchAvailableBoards">
+            <summary>
+            Prueba que no se puede crear una partida sin especificar tipo de board.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.InsufficientArgumentsCreateMatch">
+            <summary>
+            Prueba que no se puede crear una partida sin especificar el create.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.AlreadyInGame">
+            <summary>
+            Prueba que no se puede entrar en un game estando ya en otro.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.JoinToPrivateMatch">
+            <summary>
+            Prueba un caso de unirse a una partida privada.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.NotMatchFoundByBoardType">
+            <summary>
+            Prueba que no entrará a ningun match si el tipo de board especificado no está disponible.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.NotMatchFoundByID">
+            <summary>
+            Prueba que no entrará a ningun match si la id especificada no existe. 
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.CreatePublicMatch">
+            <summary>
+            Caso de prueba de crear una partida pública.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.CreatePrivateMatch">
+            <summary>
+            Caso de prueba de crear una partida privada.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MatchHandlerTests.IncorrectAccesibiltyType">
+            <summary>
+            Prueba que no se puede crear una partida si el tipo de partida no es pública o privada.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.MessageTests">
+            <summary>
+            Tests relacionados a Message.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MessageTests.MessageCreation">
+            <summary>
+            Test de creacion de un Message y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.PlaceBoatsAddHandlerTests">
+            <summary>
+            Tests relacionados a PlaceBoatsAddHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.BoatdAddS">
+            <summary>
+            Prueba un caso de añadir botes existoso en una board s.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.BoatdAddM">
+            <summary>
+            Prueba un caso de añadir botes existoso en una board M.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.BoatdAddL">
+            <summary>
+            Prueba un caso de añadir botes existoso en una board L.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.InvalidTypeError">
+            <summary>
+            Test de a la hora de agregar un bote mandar un tipo de bote invalido.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.InvalidCoords">
+            <summary>
+            Test de a la hora de agregar un bote mandar una coordenada de bote invalida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.OutOfRangeError">
+            <summary>
+            Test de a la hora de agregar un bote mandar una coordenada de bote invalido,
+            por estar fuera de la tabla.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.DiagonalBoteError">
+            <summary>
+            Test de a la hora de agregar un bote mandar una coordenada de bote invalido,
+            por estar en diagonal.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.NotRightSizeError">
+            <summary>
+            Test de a la hora de agregar un bote mandar una coordenada de bote invalido,
+            por poner un largo mayor o menor al del tipo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.NotValidBoteTypeForGamemode">
+            <summary>
+            Test de a la hora de agregar un bote mandar un tipo que no esta habilitado
+            para el gamemode.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.AlreadyAddedAllBotes">
+            <summary>
+            Test de a la hora de agregar un bote cuando ya has agregado todos.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsAddHandlerTests.CannotHaveSameCoordsAsOtherBoats">
+            <summary>
+            Test de a la hora de agregar un bote a coordenados donde ya hay uno.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.PlaceBoatsInfoHandlerTest">
+            <summary>
+            Tests relacionados a PlaceBoatsInfoHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsInfoHandlerTest.FullyCorrectInteraction">
+            <summary>
+            Prueba caso de una interaccion correcta para una Board L.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsInfoHandlerTest.FullyCorrectInteractionM">
+            <summary>
+            Prueba caso de una interaccion correcta para una Board M.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsInfoHandlerTest.FullyCorrectInteractionS">
+            <summary>
+            Prueba caso de una interaccion correcta para una Board S.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.PlaceBoatsListHandlerTests">
+            <summary>
+            Tests relacionados a listar los botes.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.NoPlaceBoats">
+            <summary>
+            Prueba si identifica que no se ha colocado ningun barco y se lo comunica al usuario.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.ListSailBoat">
+            <summary>
+            Prueba si es posible listar un Sailboat.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.ListVessel">
+            <summary>
+            Prueba si es posible listar un Vessel.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.ListSubmarine">
+            <summary>
+            Prueba si es posible listar un Submarine.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.ListCruise">
+            <summary>
+            Prueba si es posible listar un Cruise.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.ListCarrier">
+            <summary>
+            Prueba si es posible listar un Carrier.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.List2BoatsSameType">
+            <summary>
+            Prueba si es posible listar dos botes del mismo tipo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsListHandlerTests.List2BoatsDiffType">
+            <summary>
+            Prueba si es posible listar dos botes de diferentes tipos.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.PlaceBoatsRemoveHandlerTest">
+            <summary>
+            Tests relacionados a PlaceBoatRemoveHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveSailBoat">
+            <summary>
+            Prueba de remover un SailBoat
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveVessel">
+            <summary>
+            Prueba de remover un Vessel
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveCruise">
+            <summary>
+            Prueba de remover un Cruise
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveSubmarine">
+            <summary>
+            Prueba de remover un Submarine
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveCarrier">
+            <summary>
+            Prueba de remover un Carrier
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveWithoutNumber">
+            <summary>
+            Prueba de remover un bote usando letras
+            </summary>
+        </member>
+        <member name="M:LibraryTests.PlaceBoatsRemoveHandlerTest.RemoveNonExistingBoat">
+            <summary>
+            Prueba de remover un bote cuyo id no existe
+            </summary>
+        </member>
+        <member name="T:LibraryTests.RegisterHandlerTests">
+            <summary>
+            Tests relacionados a RegisterHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.RegisterHandlerTests.FullyCorrectInteraction">
+            <summary>
+            Prueba un caso de registro exitoso.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.RegisterHandlerTests.IncorrectCommand">
+            <summary>
+            Prueba de que llega el siguiente IHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.RegisterHandlerTests.IncorrectFormat">
+            <summary>
+            Prueba que el comando no funciona con un formato incorrecto.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.SingletonTests">
+            <summary>
+            Tests relacionados a Singleton.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SingletonTests.EmptyInstance">
+            <summary>
+            Test para verificar que una primera instancia obtenida por Singleton no sea nula.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SingletonTests.SameInstance">
+            <summary>
+            Test para verificar que varias instancias del mismo tipo de Singleton sean en verdad una
+            unica, y sean identicas.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.StatsHandlerTests">
+            <summary>
+            Tests relacionados a StatsHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StatsHandlerTests.NotRegistrated">
+            <summary>
+            Prueba que un usuario no puede acceder a acciones si no está registrado.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StatsHandlerTests.FullyCorrectInteraction">
+            <summary>
+            Prueba un caso de como ver tus estadisticas correctamente.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StatsHandlerTests.IncorrectCommand">
+            <summary>
+            Prueba que llega el IHandler.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StatsHandlerTests.IncorrectFormat">
+            <summary>
+            Prueba que el handler no funciona si se da en un formato incorrecto.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.TutorialHandlerTests">
+            <summary>
+            Tests relacionados al Tutorial.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.TutorialHandlerTests.TutorialExplanation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LibraryTests.UserContainerTests">
+            <summary>
+            Tests relacionados a UserContainer.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.AddElement">
+            <summary>
+            Test de añadir un user a la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.RemoveElement">
+            <summary>
+            Test de remover un user de la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.AddAlreadyAddedElement">
+            <summary>
+            Test de agregar un user, ya agregado, a la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.RemoveNotAddedElement">
+            <summary>
+            Test de remover un user, que no se encuentra en la lista, de la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.SearchRegisteredUser">
+            <summary>
+            Test de buscar un user ya agregado a la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.SearchUnRegistereduser">
+            <summary>
+            Test de buscar un user no agregado a la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.IsRegisteredForRegistereduser">
+            <summary>
+            Test de ver si esta registrado un user que esta añadido a la lista de users.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserContainerTests.IsRegisteredForUnRegistereduser">
+            <summary>
+            Test de ver si esta registrado un user que no esta en la lista de users.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.UserStatusTests">
+            <summary>
+            Tests relacionados a UserStatus.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserStatusTests.CorrectInitialUserStatus">
+            <summary>
+            Test de correcta inicializacion de un UserStatus, siempre debe empezar
+            en UserStatus.Lobby.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserStatusTests.ChangingUserStatus">
+            <summary>
+            Test de cambiar status.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.UserTests">
+            <summary>
+            Tests relacionados a user.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.UserCreation">
+            <summary>
+            Test de creacion de un user y correcta asignacion de variables.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.AddFriend">
+            <summary>
+            Test de añadir un amigo a los amigos de un user.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.RemoveFriend">
+            <summary>
+            Test de remover un amigo de la lista de amigos de un user.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.AddAlreadyAddedFriend">
+            <summary>
+            Test de agregar un amigo que ya esta en la lista de amigos de un user.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.RemoveNotAddedFriend">
+            <summary>
+            Test de remover un amigo que no esta en la lista de amigos de un user.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.GetMissPercentage">
+            <summary>
+            Test de calculo del porcentaje de fallas.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.UserTests.GetHitPercentage">
+            <summary>
+            Test de calculo del porcentaje de aciertos.
+            </summary>
+        </member>
+    </members>
+</doc>
