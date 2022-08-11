@@ -844,16 +844,6 @@
             Prueba que el handler no funciona si se da en un formato incorrecto.
             </summary>
         </member>
-        <member name="T:LibraryTests.TutorialHandlerTests">
-            <summary>
-            Tests relacionados al Tutorial.
-            </summary>
-        </member>
-        <member name="M:LibraryTests.TutorialHandlerTests.TutorialExplanation">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:LibraryTests.UserContainerTests">
             <summary>
             Tests relacionados a UserContainer.

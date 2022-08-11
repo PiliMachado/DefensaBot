@@ -13,6 +13,7 @@ using Library.BoardUtils;
 using Library.BotUtils;
 using Library.Exceptions;
 using Library.UserUtils;
+using Library.Shot;
 
 namespace Library.GameUtils
 {
@@ -57,6 +58,8 @@ namespace Library.GameUtils
 
         private Timer TurnsTimer { get; set; }
 
+        WaterShot waterShot;
+        BoatShot boatShot;
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Game"/>.
         /// </summary>
@@ -282,6 +285,36 @@ namespace Library.GameUtils
             IBot bot = BattleShipSettings.Instance.UsedBot;
             bot.Send(previousTurnUserId, $"Se te ha acabado el tiempo para realizar un movimiento por lo que el turno ahora pasa a {this.Turn.NickName}.");
             bot.Send(this.Turn.ID, $"Se le ha acabado el tiempo para realizar un movimiento a {previousTurnUserName} por lo que el turno ahora pasa a ti.");
+        }
+        /// <summary>
+        /// Obtiene los tiros que le dan al agua.
+        /// </summary>
+        /// <value>la cantidad de tiros que fueron al agua.</value>
+        public int WaterShot
+        {
+            get 
+            { 
+                return this.waterShot.ContadorWaterShot;
+            }
+        }
+        public void AddWaterShot()
+        {
+            this.waterShot.Sumar();
+        }
+        /// <summary>
+        /// Obtiene los tiros que le dan al barco.
+        /// </summary>
+        /// <value>la cantidad de tiros que fueron al bote.</value>
+        public int BoatShot
+        {
+            get
+            {
+                return this.boatShot.ContadorBoatShot;
+            }
+        }
+        public void AddBoatShot()
+        {
+            this.waterShot.Sumar();
         }
     }
 }

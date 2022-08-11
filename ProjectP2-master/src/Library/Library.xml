@@ -872,6 +872,18 @@
             </summary>
             <param name="state">El estado del timer al momento de llamar este método.</param>
         </member>
+        <member name="P:Library.GameUtils.Game.WaterShot">
+            <summary>
+            Obtiene los tiros que le dan al agua.
+            </summary>
+            <value>la cantidad de tiros que fueron al agua.</value>
+        </member>
+        <member name="P:Library.GameUtils.Game.BoatShot">
+            <summary>
+            Obtiene los tiros que le dan al barco.
+            </summary>
+            <value>la cantidad de tiros que fueron al bote.</value>
+        </member>
         <member name="T:Library.GameUtils.GameIdentifier">
             <summary>
             GameIdentifier es una clase cuya mayor responsabilidad es crear identificadores
@@ -1465,6 +1477,55 @@
             <summary>
             Contiene los secretos y las keys para objetos sensibles como bots.
             </summary>
+        </member>
+        <member name="T:Library.Shot.BoatShot">
+            <summary>
+            Clase encarga de contar los tiros que realiza el bote. 
+            </summary>
+        </member>
+        <member name="M:Library.Shot.BoatShot.Sumar">
+            <summary>
+            Metodo sobreescrito de la clase padre que cumple la función de agregar uno al contador cada 
+            vez que se le pega al bote
+            </summary>
+        </member>
+        <member name="P:Library.Shot.BoatShot.ContadorBoatShot">
+            <summary>
+            Mteodo que retorna el contador de la cantidad de tiros que se realizan en el bote. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Library.Shot.ShotCount">
+            <summary>
+            Clase base que permite que si en algun momento se necesitan ejecutar cambios simplemente 
+            se debe crear otra clase que herde de esta. Consiguiendo una clase que tenga alta cohesio 
+            y bajo acomplamiento.
+            Esto hace que se cumpla el patrón SRP ya que es una clasebase que contiene un método sumar 
+            y si se desea hacer otra suma que no sean WaterShot y BoatShot se reescribe el método y se 
+            escribe lo que se necesita. 
+            </summary>
+        </member>
+        <member name="M:Library.Shot.ShotCount.Sumar">
+            <summary>
+            Método a sobre escribir que se utiliza en las clases heredadas.
+            </summary>
+        </member>
+        <member name="T:Library.Shot.WaterShot">
+            <summary>
+            Clase que se encarga de contar los tiros que se hacen al agua. 
+            </summary>
+        </member>
+        <member name="M:Library.Shot.WaterShot.Sumar">
+            <summary>
+            Método que esta sobreescrito e la clase padre que cumple con la función de 
+            agregar uno al contador cada vez que se le pega al agua.
+            </summary>
+        </member>
+        <member name="P:Library.Shot.WaterShot.ContadorWaterShot">
+            <summary>
+            Método que retorna el contador de cuantos goplpes se le hicieron al agua.
+            </summary>
+            <value></value>
         </member>
         <member name="T:Library.UserUtils.IFriendsHolder">
             <summary>
